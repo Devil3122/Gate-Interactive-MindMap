@@ -1,0 +1,118 @@
+:root {
+    --bg-color: #0f172a; /* Slate 900 */
+    --text-color: #f8fafc; /* Slate 50 */
+    --node-color: #1e293b; /* Slate 800 */
+    --border-color: #334155; /* Slate 700 */
+    
+    --accent-1: #3b82f6; /* Blue */
+    --accent-2: #10b981; /* Emerald */
+    --accent-3: #8b5cf6; /* Purple */
+    --accent-4: #f59e0b; /* Amber */
+    --accent-5: #ec4899; /* Pink */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden; /* Hide scrollbars, panning handles it */
+    width: 100vw;
+    height: 100vh;
+}
+
+#mindmap-container {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+#mindmap-container:active {
+    cursor: grabbing;
+}
+
+.controls {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.controls button {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.controls button:hover {
+    background: var(--accent-1);
+    border-color: var(--accent-1);
+    transform: scale(1.05);
+}
+
+/* D3 SVG Styles */
+.node {
+    cursor: pointer;
+}
+
+.node circle {
+    fill: var(--node-color);
+    stroke-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.node text {
+    font-size: 14px;
+    font-weight: 400;
+    fill: var(--text-color);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    transition: all 0.3s ease;
+    user-select: none;
+    pointer-events: none;
+}
+
+.node:hover circle {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+.node:hover text {
+    font-weight: 500;
+    fill: #ffffff;
+}
+
+.link {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 1.5px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, stroke-width 0.3s ease;
+}
+
+.watermark {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 0.85rem;
+    color: rgba(248, 250, 252, 0.4); /* subtle white */
+    pointer-events: none;
+    z-index: 10;
+}
